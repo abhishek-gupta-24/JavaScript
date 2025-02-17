@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Properties Demo</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            display: inline-block;
+            border: 2px solid black;
+        }
+        #red { background-color: red; }
+        #green { background-color: green; }
+        #blue { background-color: blue; }
+    </style>
+</head>
+<body>
+    <h2>Click on a Box or Press a Key</h2>
+    <div class="box" id="red"></div>
+    <div class="box" id="green"></div>
+    <div class="box" id="blue"></div>
+
+    <p id="log">Event details will appear here...</p>
+
+    <script>
+        // Click Event Listener (MouseEvent)
+        document.addEventListener("click", (event) => {
+            let log = document.getElementById("log");
+
+            log.innerHTML = `
+                <strong>Mouse Clicked!</strong><br>
+                Event Type: ${event.type} <br>
+                Target: ${event.target.id || "No ID"} <br>
+                Client Position: (${event.clientX}, ${event.clientY}) <br>
+                Screen Position: (${event.screenX}, ${event.screenY}) <br>
+                Ctrl Key Pressed: ${event.ctrlKey} <br>
+                Shift Key Pressed: ${event.shiftKey} <br>
+                Alt Key Pressed: ${event.altKey} <br>
+                TimeStamp: ${event.timeStamp.toFixed(2)} ms
+            `;
+
+            console.log(event);
+        });
+
+        // Keydown Event Listener (KeyboardEvent)
+        document.addEventListener("keydown", (event) => {
+            let log = document.getElementById("log");
+
+            log.innerHTML = `
+                <strong>Key Pressed!</strong><br>
+                Key: ${event.key} <br>
+                KeyCode: ${event.keyCode} (deprecated) <br>
+                Ctrl Pressed: ${event.ctrlKey} <br>
+                Shift Pressed: ${event.shiftKey} <br>
+                Alt Pressed: ${event.altKey} <br>
+                TimeStamp: ${event.timeStamp.toFixed(2)} ms
+            `;
+
+            console.log(event);
+
+            // Example: Prevent default "Ctrl + S" behavior
+            if (event.ctrlKey && event.key === "s") {
+                event.preventDefault();
+                alert("Ctrl + S was pressed! Default action prevented.");
+            }
+        });
+    </script>
+</body>
+</html>
