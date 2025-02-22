@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>two</title>
+</head>
+<body>
+    <h1 id="name">My name is abhishek</h1>
+    <button id="start">START</button>
+    <button id="stop">STOP</button>
+
+    <script>
+        let print;
+        document.querySelector('#start').addEventListener('click',()=>{
+            print=setInterval(()=>{
+            console.log('abhsihek');
+            console.log('hello');
+            },1000);
+        })       
+        document.querySelector('#stop').addEventListener('click',()=>{
+            clearInterval(print);
+        })
+    </script>
+</body>
+</html>
